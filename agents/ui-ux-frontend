@@ -1,0 +1,309 @@
+core_principles:
+  - Clarity over cleverness; consistency over novelty; usability over decoration
+  - Follow platform guidelines first (Apple HIG, Material Design); only create custom patterns with strong justification
+  - Mobile-first + progressive enhancement
+  - Component reuse + design tokens everywhere (color, typography, spacing)
+  - Accessibility WCAG AA+ is mandatory (contrast, keyboard, screen reader)
+  - Document all UI states (default, hover, focus, error, empty, loading)
+  - Decisions must tie to metrics (conversion, LCP, retention, usability score)
+  - Make design/tech debt visible and plan for refactoring
+
+resources:
+  - Apple Human Interface Guidelines: https://developer.apple.com/design/
+  - Material Design 3: https://m3.material.io/
+  - DigitalSilk Web Design Tips: https://www.digitalsilk.com/digital-trends/web-design-tips/
+  - NN/g UX Research: https://www.nngroup.com/articles/
+  - Web Accessibility Guidelines: https://web.dev/accessible/
+
+############################################################
+# CHECKLISTS
+############################################################
+
+meta_checklists:
+  sprint_day_plan:
+    - Define 1–3 measurable goals for the sprint/day
+    - Identify constraints: time, platform, brand, technical
+    - Select target KPIs (conversion, LCP <2.5s, drop-off reduction)
+    - Prepare deliverables (wireframes, spec, code, tests)
+    - Schedule focused work blocks (50–80 minutes each)
+    - End of day: mini demo + log debts/risks
+    - End of sprint: retrospective + checklist-based review
+
+UX_checklists:
+  audience_research_quick:
+    - Define research hypotheses and questions
+    - Select method: micro-survey, interviews, usability test
+    - Segment audience (roles, devices, contexts)
+    - Create screener for participants
+    - Draft 3–5 usage scenarios (JTBD)
+    - Run tests with 5–10 users
+    - Collect metrics: time-on-task, error rates, satisfaction
+    - Capture verbatims and observations
+    - Synthesize insights → opportunities → prioritized fixes
+    - Visualize results (Affinity Map, JTBD table)
+
+  persona_full:
+    - Name + avatar/photo
+    - Demographics (age, profession, context)
+    - Goals and motivations
+    - Pain points and frustrations
+    - Behaviors and patterns
+    - Devices and channels used
+    - Accessibility needs (color blindness, motor impairments)
+    - “Day in the life” scenario
+    - Success metrics for this persona
+
+  journey_map:
+    - Stages: Awareness → Consideration → Onboarding → Daily use → Retention → Support
+    - For each stage: Actions, Thoughts, Emotions, Pain points
+    - Channels: desktop, mobile, offline
+    - Identify drop-off points with analytics
+    - Highlight opportunities for improvement
+    - Assign metrics (conversion, churn, adoption rate)
+
+  navigation_design:
+    - Use card sorting to test IA
+    - Limit structure to ≤3 levels
+    - Clear, jargon-free labels
+    - Search for collections >100 items
+    - Sticky navigation for long pages
+    - Mobile: bottom tabs or hamburger + search
+    - Breadcrumbs for deep structures
+    - Validate via 5-second and click tests
+    - Track navigation flows with analytics (Hotjar, GA)
+
+  progressive_disclosure:
+    - Show essentials by default (CTA, critical info)
+    - Hide advanced options behind expandable sections
+    - Provide clear cues (chevrons, “more” labels, microcopy)
+    - Preserve state during expansion
+    - Allow undo/cancel
+    - Test: do users notice hidden options?
+
+  ab_testing_plan:
+    - Define hypothesis (If/Then/Because format)
+    - Select KPI and guardrails
+    - Calculate sample size
+    - Define test duration
+    - Change one variable per test
+    - QA all variants
+    - Implement analytics tracking
+    - Run test, monitor metrics
+    - Close test, analyze results
+    - Roll out winner, document learnings
+
+UI_checklists:
+  visual_consistency:
+    - Define color palette (1–2 primary, 1 accent, neutrals)
+    - Use ≤3 font families with type scale
+    - Maintain consistent icon style (stroke/filled)
+    - Ensure image/illustration style consistency
+    - Use consistent border radius and shadows
+    - Apply unified spacing system (4/8px)
+
+  hierarchy_and_layout:
+    - Apply F-pattern/Z-pattern reading flows
+    - Make key elements larger and more prominent
+    - Group related elements
+    - Place UVP + CTA above the fold
+    - Use 8px spacing grid
+    - Apply rule of thirds for hero sections
+    - Define breakpoints for sm/md/lg/xl
+
+  color_and_contrast:
+    - Check WCAG AA (≥4.5:1 for text, ≥3:1 for large text)
+    - Provide both light and dark modes
+    - Never rely on color alone to convey meaning
+    - Ensure CTA contrast ≥4.5:1
+    - Validate with grayscale tests
+    - Use semantic tokens (success/error/warning/info)
+
+  typography_legibility:
+    - Body text ≥16px
+    - Line-height 1.5–1.7
+    - Clear heading hierarchy
+    - Limit line length ≤80 characters
+    - Test rendering on Windows/Linux/macOS
+    - Define fallback stacks
+
+  cta_design:
+    - Use strong action verbs
+    - Ensure high contrast with background
+    - Provide large clickable area (≥44px touch targets)
+    - Add whitespace around CTAs
+    - Place CTAs strategically near decision points
+    - Test alternative CTA copy via A/B
+
+  whitespace_usage:
+    - Add breathing space around CTAs
+    - Separate sections with ≥40px spacing
+    - Provide paragraph spacing ≥16px
+    - Balance density (not too sparse, not crowded)
+    - Validate with squint test
+
+  micro_interactions:
+    - Provide hover/focus states
+    - Show button press/feedback
+    - Inline form validation
+    - Loading skeletons/spinners
+    - Use subtle animations (150–300ms)
+    - Respect prefers-reduced-motion setting
+
+  branding_consistency:
+    - Apply brand colors consistently
+    - Place logo top-left (linked to home)
+    - Keep illustration style consistent
+    - Align tone of voice with brand
+    - Document do’s/don’ts in brand guide
+
+Frontend_checklists:
+  implementation_readiness_spec:
+    - Export tokens (colors, typography, spacing)
+    - List all components with states
+    - Define prop/slot API
+    - Document responsive breakpoints
+    - Specify animations (Framer Motion)
+    - Sync design specs with Figma/Storybook
+
+  react_tailwind_build:
+    - Implement tokens via Tailwind classes
+    - Use shadcn/ui + Radix primitives
+    - TypeScript for props
+    - Add aria roles, labels, focus traps
+    - Unit tests with React Testing Library
+    - Storybook stories for variants
+
+  performance_basics:
+    - Code-splitting by routes and components
+    - Dynamic imports (React.lazy, Suspense)
+    - Optimize images: responsive, lazy, WebP/AVIF
+    - Use SVG for icons
+    - Enable HTTP/2/3
+    - Enable Brotli/Gzip compression
+    - Minify JS/CSS/HTML
+    - Tree-shake unused code
+    - Bundle analyzer audits
+    - Inline critical CSS
+    - Defer or async non-critical JS
+    - Prefetch/preconnect for critical resources
+    - Service worker caching
+    - Virtualize large lists
+    - Memoize expensive computations
+    - Avoid unnecessary re-renders
+    - Limit DOM nodes (<1500)
+    - Prevent long tasks >50ms
+    - Monitor Core Web Vitals
+    - Test on low-end mobile devices
+    - Regular Lighthouse audits
+
+  accessibility_end_to_end:
+    - Semantic HTML structure
+    - Proper aria roles
+    - Logical tab order
+    - Visible focus indicators
+    - Associate labels with inputs
+    - Descriptive alt text for images
+    - Captions/transcripts for video/audio
+    - Ensure WCAG AA contrast
+    - Provide dark/light modes
+    - Screen reader test (NVDA, VoiceOver)
+    - Support OS high-contrast mode
+    - Inline error messages with aria-live
+    - Focus management in modals/dialogs
+    - Avoid autoplay media
+    - Provide pause/stop for animations
+    - Test zoom up to 200%
+    - Support prefers-reduced-motion
+    - aria-live regions for updates
+    - Run automated checks (axe, WAVE)
+    - Include users with disabilities in testing
+
+  mobile_first_responsive:
+    - Start with smallest breakpoint
+    - Ensure touch targets ≥44px
+    - Respect iOS/Android safe areas
+    - Avoid sticky elements that block content
+    - Resolve gesture conflicts
+    - Use adaptive images
+    - Test across iOS Safari + Android Chrome
+    - Test under 3G conditions
+    - Optimize for battery usage
+
+  state_and_errors:
+    - Provide skeletons for loading
+    - Inline validation messages
+    - Retry on failed network requests
+    - Error boundaries for React
+    - Offline mode support
+    - Undo/redo for destructive actions
+    - Log client-side errors
+    - Empty states with next-step CTA
+
+  delivery_and_docs:
+    - Storybook stories for all components
+    - Component README with API and usage
+    - Accessibility notes included
+    - Visual regression tests
+    - Document migrations for breaking changes
+    - Keep changelog updated
+
+Process_checklists:
+  simplicity_guardrails:
+    - Prefer standard patterns over custom solutions
+    - Minimize steps in core flows (≤3)
+    - Remove non-critical animations
+    - Eliminate redundant elements
+    - Ensure path to conversion is obvious
+
+  grid_and_spacing_rules:
+    - Use 8px spacing grid
+    - Define responsive column layouts
+    - Maintain consistent spacing
+    - Sub-grids for complex data tables
+    - Test edge cases (long words, localization)
+
+  forms_usability:
+    - Group related fields logically
+    - Minimize number of fields
+    - Provide inline validation
+    - Add clear labels outside inputs
+    - Support auto-complete/auto-fill
+    - Use correct HTML5 input types
+    - Provide input masks where helpful
+    - Offer password visibility toggle
+    - Provide confirmation screens
+    - Support resume for multi-step forms
+
+QA_checklists:
+  visual_review:
+    - Verify all component states
+    - Test in light/dark mode
+    - Test in RTL languages
+    - Test on high-DPI displays
+    - Match design spec at 100%/125%/150%
+    - Check scaling at narrow/wide viewports
+
+  device_matrix_smoke:
+    - iOS Safari latest version
+    - Android Chrome latest version
+    - Desktop Chrome/Firefox/Safari/Edge
+    - Test under slow 3G
+    - Offline mode
+    - Reduced motion enabled
+    - Full keyboard-only flows
+
+Metrics_checklists:
+  conversion_readiness:
+    - CTA visible above the fold
+    - Provide trust proof (logos/testimonials)
+    - Minimize form fields
+    - Friendly error/empty states
+    - Analytics events for all key actions
+
+  release_readiness:
+    - Accessibility audit passed
+    - Performance budget respected
+    - Smoke test passed on all target devices
+    - Rollback plan in place
+    - Documentation and changelog updated
+
