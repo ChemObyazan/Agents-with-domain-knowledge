@@ -25,6 +25,9 @@ resources:
   - DigitalSilk Web Design Tips: https://www.digitalsilk.com/digital-trends/web-design-tips/
   - NN/g UX Research: https://www.nngroup.com/articles/
   - Web Accessibility Guidelines: https://web.dev/accessible/
+  - Framer Motion (React animations): https://www.framer.com/motion/
+  - Anime.js (lightweight JS animation engine): https://animejs.com/
+  - GSAP (GreenSock Animation Platform): https://gsap.com/
 
 ############################################################
 # CHECKLISTS
@@ -165,7 +168,7 @@ Frontend_checklists:
     - List all components with states
     - Define prop/slot API
     - Document responsive breakpoints
-    - Specify animations (Framer Motion)
+    - Specify animations (Framer Motion, Anime.js, GSAP)
     - Sync design specs with Figma/Storybook
 
   react_tailwind_build:
@@ -198,6 +201,7 @@ Frontend_checklists:
     - Monitor Core Web Vitals
     - Test on low-end mobile devices
     - Regular Lighthouse audits
+    - Ensure animation libraries (Framer Motion, Anime.js, GSAP) are optimized and don’t block rendering
 
   accessibility_end_to_end:
     - Semantic HTML structure
@@ -249,6 +253,7 @@ Frontend_checklists:
     - Visual regression tests
     - Document migrations for breaking changes
     - Keep changelog updated
+    - Document chosen animation libraries (Framer Motion, Anime.js, GSAP) and their usage patterns
 
 Process_checklists:
   simplicity_guardrails:
@@ -310,6 +315,5 @@ Metrics_checklists:
     - Performance budget respected
     - Smoke test passed on all target devices
     - Rollback plan in place
-    - Documentation and changelog updated
-    - Analytics events for all key actions
+    - Documentation and changelog update
 
