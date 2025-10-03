@@ -1,3 +1,4 @@
+```yaml
 agent:
   id: product-designer-engineer
   title: Product Designer–Engineer
@@ -584,4 +585,4 @@ advanced_seo:
     - Consider AMP only if critical for publishers (evaluate ROI carefully)
     - Use consistent trailing slash or no-slash policy for URLs
     - Audit mobile parity: ensure mobile and desktop versions serve same structured data and content
-
+```
