@@ -458,3 +458,91 @@ Frontend_checklists:
     - Keep ETag for dynamic resources; omit for immutable hashed assets
     - Set <html lang="…"> in HTML; HTTP Content-Language header optional
     - Track Core Web Vitals (LCP, INP, CLS, TTFB) and total requests/payload in monitoring
+
+SEO_checklists:
+  indexing_and_crawling:
+    - Ensure all important pages are indexable (no accidental noindex/robots.txt block)
+    - Provide an XML sitemap and keep it updated
+    - Use robots.txt to disallow only non-public/system paths
+    - Use canonical tags to avoid duplicate content
+    - Use hreflang tags for multilingual pages
+    - Ensure internal links point to HTTPS versions
+    - Redirects use 301 (permanent), no 302 for production
+    - Ensure no 404/500 errors on crawlable links
+
+  url_best_practices:
+    - Use descriptive URLs with target keywords
+    - Use hyphens (-) instead of underscores (_) in URLs
+    - Keep URLs short and readable (<75 characters)
+    - Choose ccTLD or implement hreflang for localization
+    - Decide between subdomains vs subfolders consistently
+    - Always use HTTPS versions internally
+
+  metadata_and_structure:
+    - Each page has a unique <title> (≤60 characters, keyword near start)
+    - Each page has a unique meta description (≤155 characters, compelling copy)
+    - Headings (H1–H6) follow a clear hierarchy (one H1 per page)
+    - Use structured data (JSON-LD schema.org) where relevant (e.g., Product, Article, FAQ)
+    - Use Open Graph (og:title, og:description, og:image) and Twitter Card tags
+    - Images have descriptive alt attributes (≤70 characters)
+    - Add byline and publication dates for articles/news
+    - Implement structured data for Organization and Website (site name, sitelinks)
+
+  accessibility_for_seo:
+    - Provide custom 403 and 404 pages with helpful navigation
+    - Implement rel="next" and rel="prev" for paginated content (or canonicalize properly)
+    - Ensure structured snippets (schema.org) are valid
+    - Ensure all important content is visible in the DOM (not only via JS/canvas)
+    - Provide crawlable <a> links with descriptive anchor text
+    - For SPAs, ensure each view/state has a unique URL
+
+  content_requirements:
+    - Each page should have at least 300 words of unique content
+    - Update content regularly (freshness as a ranking factor)
+    - Avoid duplicate or thin content
+    - Provide textual descriptions alongside visual content
+    - Use target keywords naturally in titles, headings, and first paragraphs
+    - Avoid Flash, Java, Silverlight or other unsupported plugins
+
+  images_and_videos:
+    - Use descriptive filenames for images/videos (keyword-friendly)
+    - Always add width and height attributes to images
+    - Provide descriptive alt text and captions
+    - Provide transcripts and captions for videos
+    - Avoid Flash-based video players; use HTML5 <video>
+
+  mobile_and_performance:
+    - Add <meta name="viewport" content="width=device-width, initial-scale=1">
+    - Ensure tap targets (buttons, links) ≥44–48px
+    - Test mobile friendliness (Google Mobile-Friendly Test)
+    - Page load times <3s on mobile
+    - Optimize Core Web Vitals (LCP <2.5s, CLS <0.1, INP <200ms)
+    - Avoid intrusive interstitials/popups on mobile
+    - Use Smart App Banners (iOS) only if you have a companion app
+
+  links_and_internationalization:
+    - Add 2–3 internal links per page with descriptive anchor text
+    - No orphan pages (all pages reachable within 3 clicks)
+    - Check and fix broken links regularly
+    - Use rel="nofollow/sponsored" for paid/untrusted links
+    - Ensure external links open safely (noopener, noreferrer if new tab)
+
+  search_appearance:
+    - Ensure <title> and H1 are consistent and descriptive (Google may rewrite otherwise)
+    - Provide concise, unique meta descriptions; use data-nosnippet or max-snippet if limiting
+    - Configure favicon: square, ≥48px, <link rel="icon"> from same domain
+    - Write clear, direct answers to target featured snippets
+    - Optimize high-quality, timely content with large images for Google Discover
+    - Consider Web Stories with proper metadata if relevant
+    - Use schema.org structured data types (Article, Product, FAQ, Review, etc.)
+
+  ai_features:
+    - Follow all core SEO best practices; no special AI markup required
+    - Ensure page is indexable and eligible for a standard snippet
+    - Keep important content in visible text (not only images/video/JS)
+    - Use high-quality supporting images and videos where applicable
+    - Make sure structured data matches visible text exactly
+    - Keep Merchant Center and Business Profile info up-to-date
+    - Monitor AI-driven traffic via Search Console performance reports
+    - Control previews with nosnippet, data-nosnippet, max-snippet, or noindex
+    - If restricting AI training in Google systems, configure Google-Extended crawler
