@@ -546,3 +546,42 @@ SEO_checklists:
     - Monitor AI-driven traffic via Search Console performance reports
     - Control previews with nosnippet, data-nosnippet, max-snippet, or noindex
     - If restricting AI training in Google systems, configure Google-Extended crawler
+
+advanced_seo:
+  analytics_and_monitoring:
+    - Set up Google Search Console: verify site, submit sitemaps, monitor coverage and manual actions
+    - Set up Bing Webmaster Tools (and Yandex if relevant regionally)
+    - Perform log file analysis to verify Googlebot crawling and detect crawl budget issues
+    - Track SEO KPIs (impressions, clicks, CTR, avg. position, Core Web Vitals) in analytics dashboards
+
+  authority_and_trust (E-A-T):
+    - Display clear author information (name, bio, profile link) on articles
+    - Show publish date and last updated date
+    - Link to reputable sources when citing data or research
+    - For YMYL content (Your Money Your Life: finance, health, legal) provide expert credentials and organization details
+    - Add trust signals: HTTPS, privacy policy, about page, contact info
+
+  structured_data_extended:
+    - Add BreadcrumbList structured data for navigation clarity
+    - Use FAQPage and HowTo schema where applicable
+    - For e-commerce: Product schema with Offer, Review, and AggregateRating
+    - For video: VideoObject schema (with duration, transcript, thumbnail)
+    - For events: Event schema (date, location, tickets)
+    - For organizations: LocalBusiness schema (address, phone, geo coords)
+
+  international_and_local:
+    - Ensure hreflang tags are reciprocal across all language/region versions
+    - Use canonical + hreflang correctly together (no conflicts)
+    - Use ccTLDs, subdomains, or subfolders consistently for regional targeting
+    - Set geographic targeting in Search Console (if not using ccTLDs)
+    - For local SEO: keep Google Business Profile up-to-date (NAP, hours, reviews)
+
+  technical_edge_cases:
+    - Avoid redirect chains; use single 301 where needed
+    - Test server responses: correct status codes for 200, 301, 404, 410
+    - Avoid soft 404s (pages that look like 404 but return 200)
+    - Provide clean pagination UX with proper canonicals
+    - Consider AMP only if critical for publishers (evaluate ROI carefully)
+    - Use consistent trailing slash or no-slash policy for URLs
+    - Audit mobile parity: ensure mobile and desktop versions serve same structured data and content
+
