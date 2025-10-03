@@ -279,6 +279,7 @@ Frontend_checklists:
     - Use SVG icons (inline or symbol)
     - Prefetch/preconnect critical resources
     - Preload key assets (fonts, hero images)
+    - Use font subsetting + `font-display: swap`; prefer variable fonts where useful
     - Enable HTTP/2 or HTTP/3
     - Enable Brotli/Gzip compression
     - Service worker caching with stale-while-revalidate strategy
@@ -289,10 +290,12 @@ Frontend_checklists:
     - Avoid unnecessary React re-renders
     - Keep long tasks <50ms on the main thread
     - Keep DOM complexity manageable
+    - Set performance budgets (JS ≤170KB gz, CSS ≤35KB gz, LCP ≤2.5s, INP ≤200ms, CLS ≤0.1)
     - Monitor Core Web Vitals (LCP, CLS, INP, TTFB)
     - Test on low-end devices and slow networks
     - Run Lighthouse and WebPageTest audits in CI
     - Ensure animation libraries (Motion, Anime.js, GSAP) are optimized and non-blocking
+    - Govern third-party scripts: async/defer, lazy-load, integrity, allowlist, size/time budgets
 
   accessibility_end_to_end:
     - Use semantic HTML wherever possible
@@ -352,10 +355,27 @@ Frontend_checklists:
     - Sanitize user input to prevent XSS
     - Never expose secrets in frontend code
     - Use HTTPS-only cookies with SameSite rules
-    - Apply Content-Security-Policy (CSP)
+    - Apply strict Content-Security-Policy (nonce/hashed sources)
+    - Use Subresource Integrity (SRI) for external scripts/styles
+    - Sandbox untrusted iframes; set frame-ancestors in CSP or X-Frame-Options
     - Validate data on both client and server
     - Avoid inline scripts and eval()
     - Regularly audit dependencies (npm audit, Snyk)
+    - Pin Node version; lockfile committed; prefer pnpm/yarn with frozen lockfile
+
+  progressive_enhancement_and_fallbacks:
+    - Ensure critical content is accessible without JavaScript (progressive enhancement mindset)
+    - Provide <noscript> fallback for key actions (SPA routing, analytics, images)
+    - Verify that forms and navigation degrade gracefully when JS is disabled
+    - Use ARIA and semantic HTML so assistive tech can access content regardless of scripts
+
+  cookies_and_storage:
+    - Keep cookies as small as possible (<4KB each)
+    - Limit total cookies ≤20 per domain
+    - Use HttpOnly, Secure, and SameSite attributes for all cookies
+    - Avoid storing sensitive data in localStorage/sessionStorage
+    - Regularly review and clean up unused cookies and localStorage keys
+    - Ensure cookie banner/consent complies with GDPR/CCPA if applicable
 
   testing_and_qa:
     - Unit tests for logic-heavy components
@@ -364,6 +384,8 @@ Frontend_checklists:
     - Snapshot/visual regression in CI
     - Accessibility testing included in pipeline
     - Enforce minimum test coverage thresholds
+    - Contract tests for API (MSW/PACT) and resilient mocking
+    - Performance/LH budgets checked in CI; fail on regression
 
   monitoring_and_observability:
     - Integrate error tracking (Sentry, LogRocket)
@@ -371,11 +393,68 @@ Frontend_checklists:
     - Log critical user actions/events
     - Set up alerts for spikes in errors
     - Review monitoring dashboards regularly
+    - Upload source maps for accurate stack traces
+    - Configure session replay with PII masking and sampling
+
+  build_and_operations:
+    - Use commit hooks (lint-staged, pre-commit) for lint/tests
+    - Conventional Commits + changelog automation (semantic-release)
+    - Enable Renovate/Dependabot for dependency updates
+    - Cache node_modules/builds in CI for speed
+    - Document env config schema; validate at startup
+    - Feature flags for safe rollouts; define kill switches
+
+  data_fetching_and_resilience:
+    - Use AbortController to cancel in-flight requests on unmount/navigation
+    - Handle race conditions (track latest request, ignore stale)
+    - Backoff/retry policies per endpoint criticality
+    - Timeouts for network calls; user-visible fallback
+    - Cache/stale-while-revalidate for idempotent GETs
 
   internationalization:
     - Use an i18n framework (react-intl, next-i18next)
     - Extract all strings into translation files
-    - Support plurals and gendered strings
+    - Support plurals and gendered strings (Intl)
     - Format dates, numbers, and currencies per locale
     - Support RTL layout where required
     - Test UI with pseudo-localization
+    - Use bidi isolation (<bdi>/Unicode isolates) for mixed-direction text
+
+  html_css_additional:
+    - Place CSS <link> before JS <script> to avoid render blocking by scripts
+    - Concatenate CSS only if on HTTP/1; measure for HTTP/2/3 before concatenation
+    - Analyze stylesheet complexity; remove redundant/unused selectors and reduce specificity
+
+  fonts_additional:
+    - Keep total webfont payload (all families/variants) ≤ 300KB gzipped (after subsetting)
+    - Limit variants (weights/italics) to those actually used; prefer variable fonts when possible
+
+  images_additional:
+    - Avoid Base64-encoded images except for tiny (<1KB) inline icons; prefer separate, cacheable files
+
+  server_metrics:
+    - Keep total page weight < 1500KB (aim < 500KB for critical pages)
+    - Ensure page load time < 3s on a throttled mobile network (e.g., slow 3G)
+    - Keep TTFB < 1.3s from the user’s region
+    - Limit cookies to ≤ 20 per domain and ≤ 4KB each; avoid cookies on static assets
+    - Minimize HTTP requests; bundle or inline only when it measurably improves performance
+
+  css_protips:
+    - Prefer rem/em units for typography; define a root font size and scale from it
+    - Use clamp() for fluid responsive typography
+    - Use object-fit: cover/contain for images and video (with fallbacks if needed)
+    - Centralize CSS custom properties in :root (design tokens)
+    - Avoid !important except in strictly scoped utility classes
+    - Avoid CSS @import at runtime; resolve imports at build time (PostCSS/CSS Layers)
+    - Use :not() and other selectors judiciously to keep specificity maintainable
+    - Minify and optimize SVGs before shipping (e.g., SVGO)
+    - Test animation performance on real devices (CPU/GPU/memory under load)
+    - Provide print stylesheets only for pages users actually print (invoices, docs)
+
+  server_and_headers:
+    - Ensure static asset responses do NOT set cookies (no Set-Cookie on CSS/JS/img)
+    - Serve correct Content-Type and charset for all assets
+    - Prefer Cache-Control with long max-age + immutable for hashed assets
+    - Keep ETag for dynamic resources; omit for immutable hashed assets
+    - Set <html lang="…"> in HTML; HTTP Content-Language header optional
+    - Track Core Web Vitals (LCP, INP, CLS, TTFB) and total requests/payload in monitoring
